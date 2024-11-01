@@ -1,0 +1,11 @@
+# macOS stuff
+.DS_Store
+
+
+# Cargo/Rust
+/target
+
+# Terraform 
+*.terraform
+*.hcl
+infrastructure/data/*

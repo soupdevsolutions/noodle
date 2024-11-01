@@ -1,0 +1,7 @@
+{% for donation in donations %}
+<div class="hover:bg-orange-100 border-b-2 p-2 border-orange-400 mb-2 cursor-default select-none">
+	<b class="text-xl">${{ donation.amount }} </b>from <b>{{ donation.sender }}</b><br/>
+	<span class="text-xs text-gray-800">({{ donation.created_at }})</span><br/>
+	{{ donation.message }}
+</div>
+{% endfor %}

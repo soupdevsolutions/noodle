@@ -1,0 +1,68 @@
+name: CI
+
+on:
+    push:
+        branches:
+        - main
+    pull_request:
+        branches:
+        - main
+
+env:
+    RUSTFLAGS: -Dwarnings
+
+jobs:
+    rust-test:
+        name: Test
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v2
+        - name: Install Rust
+          uses: actions-rs/toolchain@v1
+          with:
+            toolchain: stable
+            override: true
+        - uses: Swatinem/rust-cache@v2
+          with:
+            cache-all-crates: "true"
+        - name: Run tests
+          run: cargo test --all
+    rust-clippy:
+        name: Clippy
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v2
+        - name: Install Rust
+          uses: actions-rs/toolchain@v1
+          with:
+            toolchain: stable
+            override: true
+        - uses: Swatinem/rust-cache@v2
+          with:
+            cache-all-crates: "true"
+        - name: Run clippy
+          run: cargo clippy --all -- -D warnings
+    rust-fmt:
+        name: Fmt
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v2
+        - name: Install Rust
+          uses: actions-rs/toolchain@v1
+          with:
+            toolchain: stable
+            override: true
+        - uses: Swatinem/rust-cache@v2
+          with:
+            cache-all-crates: "true"
+        - name: Run fmt
+          run: cargo fmt --all -- --check
+    tofu-fmt:
+        name: Tofu Fmt
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v2
+        - name: Install Tofu
+          uses: opentofu/setup-opentofu@v1
+        - name: Run tofu fmt
+          run: tofu -chdir=infrastructure fmt -check

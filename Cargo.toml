@@ -1,0 +1,36 @@
+[package]
+name = "noodle"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "noodle"
+path = "src/lib.rs"
+
+[[bin]]
+name = "initiate_payment"
+path = "src/bins/initiate_payment.rs"
+
+[[bin]]
+name = "finish_payment"
+path = "src/bins/finish_payment.rs"
+
+[[bin]]
+name = "get_payments"
+path = "src/bins/get_payments.rs"
+
+[dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
+lambda_http = { version = "0.11.0", default-features = false, features = ["apigw_http", "tracing"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1.0"
+serde_html_form = "0.2.6"
+tokio = { version = "1", features = ["macros"] }
+tracing = "0.1"
+tracing-subscriber = "0.3.18"
+async-stripe = { version = "0.39", features = ["runtime-tokio-hyper"] }
+aws-sdk-dynamodb = "1.44"
+aws-config = "1.5"
+uuid = { version = "1.4.1", features = ["v4"] }
+askama = "0.12.1"
+chrono = "0.4.38"

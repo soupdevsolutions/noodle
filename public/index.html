@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>noodle by soup.dev</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://unpkg.com/htmx.org@1.9.8"></script>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script src="script.js"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="styles.css">
+</head>
+
+
+
+<body class="h-dvh bg-orange-50" style="font-family: Inter, monospace;">
+	<header class="h-16 mb-10 p-1 px-10 flex items-center justify-between border-b-2 border-orange-300">
+		<a href="/" class=" flex items-center gap-2">
+			<img src="favicon.ico" class="h-9 w-auto" alt="ghtraffic" />
+			<div class="font-medium text-gray-800 text-2xl tracking-tighter">
+				Noodle
+			</div>
+		</a>
+	</header>
+	<div class="flex flex-col items-center px-4 md:px-36 lg:px-60 w-full h-auto">
+		<h1
+			class="mb-10 md:text-4xl text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl text-center">
+			Noodle by <a href="https://soup.dev" class="text-orange-500 hover:text-orange-700">soup.dev</a>
+		</h1>
+		<div class="h-20 sm:h-24">
+			<p class="text-sm md:text-lg xl:text-xl font-medium text-gray-800 text-center text-balance" id="headline">
+			</p>
+			<br/>
+			<p class="text-sm md:text-lg xl:text-xl font-medium text-gray-800 text-center text-balance">Use the form below to support Noodle, as well as other Soupdev Solutions projects!</p>
+		</div>
+
+		<button
+			class="bg-orange-500 hover:bg-orange-700 text-white font-semibold py-2 px-4 mb-6 rounded-full uppercase text-sm"
+			onclick="location.href='https://github.com/soupdevsolutions/noodle/'">Get your own page</button>
+
+		<div
+			class="flex flex-col sm:flex-row sm:gap-4 gap-12 px-4 mb-6 w-5/6 sm:h-80 h-full text-gray-800 dark:text-gray-800 items-center justify-center">
+			<div class="h-full w-full">
+				<form method="POST" hx-post="/api/payment/initiate"
+					class="bg-orange-100 ring-1 ring-orange-300 shadow-md rounded-md px-8 py-6 flex flex-col h-full gap-4"
+					id="donate-form">
+					<div class="">
+						<label for="amount" class="block text-gray-700 text-sm font-bold mb-1">Amount</label>
+						<div class="shadow border rounded-md w-full flex w-full gap-1 items-center pr-3 bg-white">
+							<input type="number" min="1" max="50000" name="amount" placeholder="5"
+								class="text-gray-700 appearance-none py-2 px-3 leading-tight rounded-md focus:outline-none focus:shadow-outline w-full no-arrows"
+								required>
+							<span class="font-medium select-none text-gray-500">$</span>
+						</div>
+					</div>
+					<div class="">
+						<label for="sender" class="block text-gray-700 text-sm font-bold mb-1">Sender</label>
+						<input type="text" name="sender" placeholder="Your name"
+							class="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+							required>
+					</div>
+					<div class="">
+						<label for="message" class="block text-gray-700 text-sm font-bold mb-1">Message</label>
+						<input type="text" name="message" placeholder="Leave a message"
+							class="shadow appearance-none border rounded-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+							required>
+					</div>
+					<div class="flex items-center justify-between">
+						<input type="submit" value="Donate"
+							class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline cursor-pointer">
+					</div>
+				</form>
+			</div>
+			<div hx-trigger="load" hx-get="/api/payments" class="overflow-y-scroll max-h-80 sm:h-full w-full">
+				<!-- this portion is to be left empty, no children -->
+			</div>
+		</div>
+	</div>
+
+	<footer class="bg-orange-50 flex items-center justify-center text-black-400 w-full">
+		<p>&copy; 2024 <a href="https://soup.dev" class="no-underline hover:text-orange-700">soup.dev</a> | <a
+				href="https://github.com/soupdevsolutions/noodle" class="no-underline hover:text-orange-700">view
+				source code</a>
+		</p>
+	</footer>
+
+</body>
+
+</html>
