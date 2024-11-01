@@ -35,7 +35,7 @@ In your new repository, go to Settings -> Secrets and Variables -> Actions, and 
 **3. Push to the `main` branch**  
 Start making changes to your Noodle setup and push them to the `main` branch. This will trigger the CD pipeline, which will deploy all your resources to your AWS account.
 
-### What should you change? (WIP)
+### What should you change?
 
 To be able to deploy the application, you should change the following values:
 - The TF state bucket name from `./infrastructure/main.tf` 
